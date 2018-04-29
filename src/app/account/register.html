@@ -3,30 +3,36 @@
     <mat-card-title>Register</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
       <mat-form-field class="full-width">
         <input matInput
-               name="username"
                placeholder="Username"
                required
-               [formControl]="usernameFormControl"
-               [errorStateMatcher]="usernameMatcher">
-        <mat-icon matSuffix *ngIf="!usernameFormControl.hasError('username') && !usernameFormControl.hasError('required')" class="check">check</mat-icon>
-        <mat-error *ngIf="usernameFormControl.hasError('username') && !usernameFormControl.hasError('required')">
+               formControlName="username">
+        <mat-icon matSuffix *ngIf="registerForm.controls['username'].valid" class="check">check</mat-icon>
+        <mat-error *ngIf="registerForm.controls['username'].invalid">
           Sorry, that name is taken 😞 please choose another
         </mat-error>
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput type="password" placeholder="Password" required>
+        <input matInput
+               type="password"
+               formControlName="password"
+               placeholder="Password"
+               required>
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput type="password2" placeholder="Repeat password" required>
+        <input matInput
+               type="password"
+               formControlName="password2"
+               placeholder="Repeat password"
+               required>
       </mat-form-field>
+      <div class="buttons">
+        <span class="spacer"></span>
+        <button mat-raised-button type="button">Cancel</button>
+        <button mat-raised-button type="submit" color="primary" [disabled]="registerForm.invalid">Register</button>
+      </div>
     </form>
   </mat-card-content>
-  <div class="buttons">
-    <span class="spacer"></span>
-    <button mat-raised-button type="button">Cancel</button>
-    <button mat-raised-button color="primary">Register</button>
-  </div>
 </mat-card>
