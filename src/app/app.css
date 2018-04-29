@@ -1,4 +1,7 @@
-body {
-  margin: 0;
-  padding: 0;
+.spacer {
+  flex-grow: 1;
+}
+
+mat-toolbar button {
+  margin-left: 10px;
 }
