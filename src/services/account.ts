@@ -6,7 +6,6 @@ import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of'
 import 'rxjs/add/operator/delay';
 
-import { BaseService } from './base';
 import { ENV } from '../environments/environment';
 
 /**
@@ -28,9 +27,8 @@ interface RegisterResponse {
 }
 
 @Injectable()
-export class AccountService extends BaseService {
-  constructor(httpClient: HttpClient) {
-    super(httpClient);
+export class AccountService {
+  constructor(private readonly httpClient: HttpClient) {
   }
 
   /**
@@ -72,7 +70,7 @@ export class AccountService extends BaseService {
         password: password
       })
       .map(resp => {
-        this.saveCookie(resp.cookie);
+        this.saveCookie(username, resp.cookie);
         return resp.cookie;
       });
   }
@@ -84,8 +82,28 @@ export class AccountService extends BaseService {
         password: password
       })
       .map(resp => {
-        this.saveCookie(resp.cookie);
+        this.saveCookie(username, resp.cookie);
         return resp.cookie;
       });
+  }
+
+  logout() {
+    this.saveCookie("", "");
+  }
+
+  isLoggedIn(): boolean {
+    return window.localStorage["cookie"] != "";
+  }
+
+  username(): string {
+    if (!this.isLoggedIn()) {
+      return "";
+    }
+    return window.localStorage["username"];
+  }
+
+  private saveCookie(username: string, cookie: string) {
+    window.localStorage["username"] = username;
+    window.localStorage["cookie"] = cookie;
   }
 }

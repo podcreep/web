@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Observable';
 export class CookieInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (window.localStorage['cookie']) {
-      console.log("adding cookie: " + window.localStorage['cookie']);
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${window.localStorage['cookie']}`

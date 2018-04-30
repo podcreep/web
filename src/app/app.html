@@ -1,8 +1,10 @@
 <mat-toolbar color="primary">
   <span>Pod Creep</span>
   <span class="spacer"></span>
-  <button mat-button [routerLink]="['register']">Register</button>
-  <button mat-raised-button color="accent" [routerLink]="['login']">Login</button>
+  <button *ngIf="!accountService.isLoggedIn()" mat-button [routerLink]="['register']">Register</button>
+  <button *ngIf="!accountService.isLoggedIn()" mat-raised-button color="accent" [routerLink]="['login']">Log in</button>
+  <span *ngIf="accountService.isLoggedIn()">{{ accountService.username() }}</span>
+  <button *ngIf="accountService.isLoggedIn()" mat-button (click)="logout()">Log out</button>
 </mat-toolbar>
 
 <router-outlet></router-outlet>
