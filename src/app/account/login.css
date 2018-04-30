@@ -1,0 +1,20 @@
+mat-card {
+  width: 400px;
+  margin: 30px auto;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+div.buttons {
+  display: flex;
+}
+
+div.buttons span.spacer {
+  flex-grow: 1;
+}
+
+div.buttons button {
+  margin-left: 10px;
+}

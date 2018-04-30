@@ -76,4 +76,16 @@ export class AccountService extends BaseService {
         return resp.cookie;
       });
   }
+
+  login(username: string, password: string): Observable<string> {
+    return this.httpClient
+      .post<RegisterResponse>(ENV.BACKEND + 'api/accounts/login', {
+        username: username,
+        password: password
+      })
+      .map(resp => {
+        this.saveCookie(resp.cookie);
+        return resp.cookie;
+      });
+  }
 }
