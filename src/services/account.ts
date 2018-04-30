@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of'
 import 'rxjs/add/operator/delay';
 
+import { BaseService } from './base';
 import { ENV } from '../environments/environment';
 
 /**
@@ -27,8 +28,10 @@ interface RegisterResponse {
 }
 
 @Injectable()
-export class AccountService {
-  constructor(private readonly httpClient: HttpClient) {}
+export class AccountService extends BaseService {
+  constructor(httpClient: HttpClient) {
+    super(httpClient);
+  }
 
   /**
    * Gets the status of the given username. Returns one of the {@link UsernameStatus} enumerations,
@@ -54,8 +57,6 @@ export class AccountService {
       }));
   }
 
-  
-
   /**
    * Register the user on the server, returns the cookie you should use to authenticate further
    * requests.
@@ -71,6 +72,7 @@ export class AccountService {
         password: password
       })
       .map(resp => {
+        this.saveCookie(resp.cookie);
         return resp.cookie;
       });
   }
