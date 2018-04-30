@@ -8,11 +8,13 @@ import { LandingComponent } from './landing';
 import { LoginComponent } from './account/login';
 import { RegisterComponent } from './account/register';
 import { PodcastsListComponent } from './podcasts/podcasts_list';
+import { DiscoverComponent } from './podcasts/discover';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'podcasts', component: PodcastsListComponent },
+  { path: 'discover', component: DiscoverComponent },
   { path: '', component: LandingComponent },
 //  { path: '**', component: PageNotFoundComponent }
 ];
