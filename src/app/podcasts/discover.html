@@ -1,7 +1,7 @@
-<mat-list>
-  <mat-list-item *ngFor="let podcast of podcasts">
+<mat-nav-list class="content">
+  <mat-list-item *ngFor="let podcast of podcasts" mat-ripple [routerLink]="['/podcasts', podcast.id]">
     <img mat-list-icon class="podcast-icon" src="{{podcast.imageUrl}}" width="48">
     <h4 mat-line>{{podcast.title}}</h4>
     <p mat-line>{{podcast.description}}</p>
   </mat-list-item>
-</mat-list>
+</mat-nav-list>

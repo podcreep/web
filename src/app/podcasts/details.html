@@ -1,0 +1,16 @@
+<div class="content" *ngIf="podcast != null">
+    <mat-toolbar>
+      <button mat-icon-button (click)="location.back()"><mat-icon>arrow_back</mat-icon></button>
+      <img src="{{podcast.imageUrl}}" width="48" height="48">
+      <h1>{{podcast.title}}</h1>
+      <div class="spacer"></div>
+      <button mat-raised-button>Refresh</button>
+    </mat-toolbar>
+    <div class="title">
+    
+    <div>
+      <h1></h1>
+      <p>{{podcast.description}}</p>
+    </div>
+  </div>  
+</div>

@@ -29,9 +29,16 @@ export class PodcastsService {
    */
   search(): Observable<PodcastList> {
     return this.httpClient
-      .get<PodcastList>(ENV.BACKEND + 'api/podcasts')
-      .map(resp => {
-        return resp;
-      });
+      .get<PodcastList>(ENV.BACKEND + 'api/podcasts');
+  }
+
+  /**
+   * Gets the details of the podcast with the given ID.
+   *
+   * @param id The ID of the podcast you're interested in.
+   */
+  get(id: number): Observable<Podcast> {
+    return this.httpClient
+      .get<Podcast>(ENV.BACKEND + "api/podcasts/" + id);
   }
 }
