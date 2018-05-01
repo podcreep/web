@@ -28,8 +28,7 @@ export class PodcastsService {
    * Searches for podcasts using the given query parameters. TODO: support query parameters.
    */
   search(): Observable<PodcastList> {
-    return this.httpClient
-      .get<PodcastList>(ENV.BACKEND + 'api/podcasts');
+    return this.httpClient.get<PodcastList>(ENV.BACKEND + 'api/podcasts');
   }
 
   /**
@@ -37,8 +36,11 @@ export class PodcastsService {
    *
    * @param id The ID of the podcast you're interested in.
    */
-  get(id: number): Observable<Podcast> {
-    return this.httpClient
-      .get<Podcast>(ENV.BACKEND + "api/podcasts/" + id);
+  get(id: number, refresh?: boolean): Observable<Podcast> {
+    let url = ENV.BACKEND + "api/podcasts/" + id;
+    if (refresh) {
+      url += "?refresh=1";
+    }
+    return this.httpClient.get<Podcast>(url);
   }
 }

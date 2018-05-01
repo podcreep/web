@@ -30,4 +30,10 @@ export class DetailsComponent {
         }
       });
   }
+
+  refresh() {
+    this.podcastsService.get(this.podcast.id, true).subscribe(p => {
+      this.podcast = p;
+    });
+  }
 }
