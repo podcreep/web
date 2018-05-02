@@ -15,3 +15,14 @@ p {
 .spacer {
   flex-grow: 1;
 }
+
+.mat-list .mat-list-item .mat-list-icon.date {
+  display: flex;
+  font-size: 14px;
+  height: 72px;
+  flex-direction: row;
+  align-items: center;
+}
+.mat-list-icon.date div {
+  text-align: center;
+}

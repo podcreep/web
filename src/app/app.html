@@ -8,5 +8,5 @@
   <span *ngIf="accountService.isLoggedIn()">{{ accountService.username() }}</span>
   <button *ngIf="accountService.isLoggedIn()" mat-button (click)="logout()">Log out</button>
 </mat-toolbar>
-
 <router-outlet></router-outlet>
+<playback></playback>

@@ -3,18 +3,14 @@ import { AccountService } from '../services/account';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.html',
-  styleUrls: ['./app.css']
+  selector: 'playback',
+  templateUrl: './playback.html',
+  styleUrls: ['./playback.css']
 })
-export class AppComponent {
+export class PlaybackComponent {
   constructor(
     public readonly accountService: AccountService,
     private readonly router: Router) {
   }
 
-  logout() {
-    this.accountService.logout();
-    this.router.navigate(['/']);
-  }
 }

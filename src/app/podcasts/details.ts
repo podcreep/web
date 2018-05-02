@@ -36,4 +36,10 @@ export class DetailsComponent {
       this.podcast = p;
     });
   }
+
+  formatDate(pubDate: string): string {
+    const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const dt = new Date(pubDate);
+    return MONTHS[dt.getMonth()] + " " + dt.getDate();
+  }
 }

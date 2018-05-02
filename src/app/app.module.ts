@@ -5,6 +5,7 @@ import { MatButtonModule, MatCheckboxModule, MatToolbarModule, } from '@angular/
 
 import { AppComponent } from './app';
 import { LandingComponent } from './landing';
+import { PlaybackComponent } from './playback';
 
 import { RoutingModule } from './routing.module';
 
@@ -12,6 +13,7 @@ import { RoutingModule } from './routing.module';
   declarations: [
     AppComponent,
     LandingComponent,
+    PlaybackComponent,
   ],
   imports: [
     BrowserAnimationsModule,

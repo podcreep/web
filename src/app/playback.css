@@ -1,0 +1,19 @@
+
+section.playback {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  height: 72px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  box-shadow: 0px -5px 5px -3px rgba(0, 0, 0, 0.2);
+}
+
+div.progress {
+  position: absolute;
+  top: 0; left: 0; height: 4px;
+  background: #4a148c;
+  width: 50%;
+}
