@@ -62,7 +62,6 @@ export class PlaybackService {
     if (this.audio.paused) {
       return;
     }
-    console.log("skipping " + seconds);
     this.audio.currentTime += seconds;
   }
 
