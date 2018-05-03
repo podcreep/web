@@ -1,4 +1,28 @@
-<section class="playback">
-  <div class="progress"></div>
-  Foobar
+<section class="playback" *ngIf="playbackState.isPlaying">
+  <div *ngFor="let segment of bufferedSegments()"
+       class="buffered"
+       [style.left]="segment.start + '%'"
+       [style.width]="segment.end + '%'"></div>
+  <div class="progress"
+       [style.width]="playbackPercent() + '%'"></div>
+  <img src="{{playbackState.podcast.imageUrl}}" width="48" height="48">
+  <div class="title">
+    <h4>{{playbackState.podcast.title}}</h4>
+    <p>{{playbackState.episode.title}}</p>
+  </div>
+  <div class="spacer"></div>
+  <div>
+    {{formatTime(playbackState.currTime)}}
+    /
+    {{formatTime(playbackState.duration)}}
+  </div>
+  <button mat-icon-button (click)="skip(-10)">
+    <mat-icon>replay_10</mat-icon>
+  </button>
+  <button mat-icon-button color="primary" class="play" (click)="playPause()">
+    <mat-icon>play_arrow</mat-icon>
+  </button>
+  <button mat-icon-button (click)="skip(30)">
+    <mat-icon>forward_30</mat-icon>
+  </button>
 </section>

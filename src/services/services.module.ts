@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { CookieInterceptor } from './cookie_interceptor';
 import { AccountService } from './account';
+import { PlaybackService } from './playback';
 import { PodcastsService } from './podcasts';
 
 @NgModule({
@@ -14,6 +15,7 @@ import { PodcastsService } from './podcasts';
   ],
   providers: [
     AccountService,
+    PlaybackService,
     PodcastsService,
     { provide: HTTP_INTERCEPTORS, useClass: CookieInterceptor, multi: true }
   ]

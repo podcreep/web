@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Location } from '@angular/common';
 
-import { PodcastsService, Podcast } from '../../services/podcasts';
+import { PodcastsService, Podcast, Episode } from '../../services/podcasts';
 import { ActivatedRoute } from '@angular/router';
+import { PlaybackService } from '../../services/playback';
 
 @Component({
   selector: 'podcast-details',
@@ -15,6 +16,7 @@ export class DetailsComponent {
 
   constructor(
     private readonly podcastsService: PodcastsService,
+    private readonly playbackService: PlaybackService,
     public readonly location: Location,
     private readonly route: ActivatedRoute) {
   }
@@ -35,6 +37,10 @@ export class DetailsComponent {
     this.podcastsService.get(this.podcast.id, true).subscribe(p => {
       this.podcast = p;
     });
+  }
+
+  play(ep: Episode) {
+    this.playbackService.start(this.podcast, ep);
   }
 
   formatDate(pubDate: string): string {

@@ -13,10 +13,19 @@ export interface Podcast {
   title: string;
   description: string;
   imageUrl: string;
+  episodes: Episode[];
 }
 
 export interface PodcastList {
   podcasts: Podcast[];
+}
+
+export interface Episode {
+  id: number;
+  title: string;
+  description: string;
+  mediaUrl: string;
+  pubDate: string;
 }
 
 @Injectable()

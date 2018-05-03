@@ -1,5 +1,6 @@
 
 section.playback {
+  font-family: roberto, helvetica neue, sans-serif;
   position: fixed;
   display: flex;
   align-items: center;
@@ -15,5 +16,50 @@ div.progress {
   position: absolute;
   top: 0; left: 0; height: 4px;
   background: #4a148c;
-  width: 50%;
+}
+
+div.buffered {
+  position: absolute;
+  top: 0; height: 4px;
+  background: rgba(74,20,140,0.3);
+}
+
+img {
+  margin-left: 20px;
+}
+
+div.title {
+  display: flex;
+  flex-direction: column;
+  margin-left: 16px;
+}
+
+div.title h4 {
+  margin: 0;
+  padding: 0;
+}
+
+div.title p {
+  margin: 0;
+  padding: 0;
+}
+
+div.spacer {
+  flex-grow: 1;
+}
+
+button {
+  margin: 0 8px;
+}
+
+button.play {
+  width: 64px;
+  height: 64px;
+}
+
+button.play mat-icon {
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  font-size: 48px;
 }
