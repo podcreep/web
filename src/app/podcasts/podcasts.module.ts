@@ -4,7 +4,7 @@ import { MatButtonModule, MatCardModule, MatIconModule, MatListModule, MatToolba
 import { RouterModule } from '@angular/router';
 
 import { DiscoverComponent } from './discover';
-import { PodcastsListComponent } from './podcasts_list';
+import { SubscriptionsComponent } from './subscriptions';
 
 import { ServicesModule } from '../../services/services.module';
 import { DetailsComponent } from './details';
@@ -13,7 +13,7 @@ import { DetailsComponent } from './details';
   declarations: [
     DiscoverComponent,
     DetailsComponent,
-    PodcastsListComponent,
+    SubscriptionsComponent,
   ],
   imports: [
     CommonModule,

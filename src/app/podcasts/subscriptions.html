@@ -1,0 +1,10 @@
+<section class="content">
+  <h1>My subscriptions</h1>
+  <mat-nav-list>
+    <mat-list-item *ngFor="let sub of subscriptions" mat-ripple [routerLink]="['/podcasts', sub.podcast.id]">
+      <img mat-list-icon class="podcast-icon" src="{{sub.podcast.imageUrl}}" width="48">
+      <h4 mat-line>{{sub.podcast.title}}</h4>
+      <p mat-line>{{sub.podcast.description}}</p>
+    </mat-list-item>
+  </mat-nav-list>
+</section>

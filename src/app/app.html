@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <span>Pod Creep</span>
-  <button *ngIf="accountService.isLoggedIn()" mat-button [routerLink]="['podcasts']">Podcasts</button>
+  <button *ngIf="accountService.isLoggedIn()" mat-button [routerLink]="['subscriptions']">Subscriptions</button>
   <button *ngIf="accountService.isLoggedIn()" mat-button [routerLink]="['discover']">Discover</button>
   <span class="spacer"></span>
   <button *ngIf="!accountService.isLoggedIn()" mat-button [routerLink]="['register']">Register</button>

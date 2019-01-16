@@ -1,0 +1,14 @@
+.content {
+  width: 800px;
+  margin: 10px auto;
+}
+
+.mat-list-item {
+  display: relative;
+}
+
+.mat-nav-list .mat-list-item .mat-list-icon.podcast-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 0;
+}

@@ -39,6 +39,12 @@ export class DetailsComponent {
     });
   }
 
+  subscribe() {
+    this.podcastsService.subscribe(this.podcast.id).subscribe(p => {
+      this.podcast = p;
+    });
+  }
+
   play(ep: Episode) {
     this.playbackService.start(this.podcast, ep);
   }

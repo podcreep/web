@@ -8,6 +8,10 @@ h1 {
   margin-left: 10px;
 }
 
+mat-toolbar button {
+  margin-left: 10pt;
+}
+
 p {
   font-family: roboto, "Helvetica Neue", sans-serif;
 }

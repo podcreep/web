@@ -28,6 +28,14 @@ export interface Episode {
   pubDate: string;
 }
 
+export interface Subscription {
+  podcast: Podcast;
+}
+
+export interface SubscriptionList {
+  subscriptions: Subscription[];
+}
+
 @Injectable()
 export class PodcastsService {
   constructor(private readonly httpClient: HttpClient) {
@@ -51,5 +59,20 @@ export class PodcastsService {
       url += "?refresh=1";
     }
     return this.httpClient.get<Podcast>(url);
+  }
+
+  /**
+   * Subscribe to the given podcast.
+   *
+   * @param id The ID of the podcast you want to subscribe to.
+   */
+  subscribe(id: number): Observable<Subscription> {
+    const url = ENV.BACKEND + "api/podcasts/" + id + "/subscriptions"
+    return this.httpClient.post<Subscription>(url, {});
+  }
+
+  subscriptions(): Observable<SubscriptionList> {
+    const url = ENV.BACKEND + "api/subscriptions"
+    return this.httpClient.get<SubscriptionList>(url, {});
   }
 }

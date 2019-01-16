@@ -7,7 +7,7 @@ import { PodcastsModule } from './podcasts/podcasts.module';
 import { LandingComponent } from './landing';
 import { LoginComponent } from './account/login';
 import { RegisterComponent } from './account/register';
-import { PodcastsListComponent } from './podcasts/podcasts_list';
+import { SubscriptionsComponent } from './podcasts/subscriptions';
 import { DiscoverComponent } from './podcasts/discover';
 import { DetailsComponent } from './podcasts/details';
 
@@ -15,7 +15,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'discover', component: DiscoverComponent },
-  { path: 'podcasts', component: PodcastsListComponent },
+  { path: 'subscriptions', component: SubscriptionsComponent },
   { path: 'podcasts/:id', component: DetailsComponent },
   { path: '', component: LandingComponent },
 //  { path: '**', component: PageNotFoundComponent }
