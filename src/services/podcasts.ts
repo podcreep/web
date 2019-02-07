@@ -14,6 +14,7 @@ export interface Podcast {
   description: string;
   imageUrl: string;
   episodes: Episode[];
+  subscriptionID: number;
 }
 
 export interface PodcastList {
@@ -69,6 +70,16 @@ export class PodcastsService {
   subscribe(id: number): Observable<Subscription> {
     const url = ENV.BACKEND + "api/podcasts/" + id + "/subscriptions"
     return this.httpClient.post<Subscription>(url, {});
+  }
+
+  /**
+   * Subscribe to the given podcast.
+   *
+   * @param id The ID of the podcast you want to subscribe to.
+   */
+  unsubscribe(podcastID: number, subscriptionID: number): Observable<Podcast> {
+    const url = ENV.BACKEND + "api/podcasts/" + podcastID + "/subscriptions/" + subscriptionID
+    return this.httpClient.delete<Podcast>(url, {});
   }
 
   subscriptions(): Observable<SubscriptionList> {

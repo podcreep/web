@@ -40,8 +40,14 @@ export class DetailsComponent {
   }
 
   subscribe() {
-    this.podcastsService.subscribe(this.podcast.id).subscribe(p => {
-      this.podcast = p;
+    this.podcastsService.subscribe(this.podcast.id).subscribe(subscription => {
+      this.podcast = subscription.podcast;
+    });
+  }
+
+  unsubscribe() {
+    this.podcastsService.unsubscribe(this.podcast.id, this.podcast.subscriptionID).subscribe(podcast => {
+      this.podcast = podcast;
     });
   }
 
