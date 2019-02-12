@@ -1,4 +1,4 @@
-<section class="playback" *ngIf="playbackState.isPlaying">
+<section class="playback" *ngIf="playbackState.podcast != null">
   <div *ngFor="let segment of bufferedSegments()"
        class="buffered"
        [style.left]="segment.start + '%'"
@@ -20,7 +20,8 @@
     <mat-icon>replay_10</mat-icon>
   </button>
   <button mat-icon-button color="primary" class="play" (click)="playPause()">
-    <mat-icon>play_arrow</mat-icon>
+    <mat-icon *ngIf="!playbackState.isPlaying">play_arrow</mat-icon>
+    <mat-icon *ngIf="playbackState.isPlaying">pause</mat-icon>
   </button>
   <button mat-icon-button (click)="skip(30)">
     <mat-icon>forward_30</mat-icon>

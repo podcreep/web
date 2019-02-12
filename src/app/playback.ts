@@ -48,7 +48,11 @@ export class PlaybackComponent {
   }
 
   playPause() {
-    this.playbackService.play();
+    if (this.playbackService.getState().isPlaying) {
+      this.playbackService.pause();
+    } else {
+      this.playbackService.play();
+    }
   }
 
   skip(seconds) {

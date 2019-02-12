@@ -36,7 +36,8 @@ export class PlaybackService {
     this.audio.autoplay = true;
     this.audio.preload = "auto";
 
-    this.setState({isPlaying: false});
+    this.currState = {isPlaying: false};
+    this.dispatchState();
   }
 
   getState(): PlaybackState {
@@ -44,20 +45,35 @@ export class PlaybackService {
   }
 
   start(p: Podcast, ep: Episode) {
-    this.setState({isPlaying: true, podcast: p, episode: ep});
+    this.currState = {isPlaying: false, podcast: p, episode: ep};
+
     this.audio.pause();
     this.audio.src = ep.mediaUrl;
     this.audio.load();
-    this.audio.play();
-    this.timer = setInterval(() => this.updateState(), 1000);
-    this.updateServerState();
+    this.play();
   }
 
   play() {
+    if (this.currState.isPlaying) {
+      return;
+    }
+
+    this.currState.isPlaying = true;
+    this.dispatchState();
+    this.timer = setInterval(() => this.updateState(), 1000);
+
     this.audio.play();
+    this.updateServerState();
   }
 
   pause() {
+    if (!this.currState.isPlaying) {
+      return;
+    }
+
+    this.currState.isPlaying = false;
+    this.dispatchState();
+
     this.audio.pause();
     this.updateServerState();
   }
@@ -81,6 +97,7 @@ export class PlaybackService {
       this.updateServerState();
     }
 
+    console.log("this.audio.currentTime = " + this.audio.currentTime);
     this.currState.buffered = this.audio.buffered;
     if (this.audio.readyState >= 1) {
       this.currState.duration = this.audio.duration;
@@ -88,7 +105,7 @@ export class PlaybackService {
     if (this.audio.readyState >= 2) {
       this.currState.currTime = this.audio.currentTime;
     }
-    this.setState(this.currState);
+    this.dispatchState();
   }
 
   /**
@@ -115,8 +132,7 @@ export class PlaybackService {
     this.httpClient.put<Subscription>(url, json).subscribe();
   }
 
-  private setState(state: PlaybackState) {
-    this.currState = state;
+  private dispatchState() {
     this.state.dispatchEvent(new CustomEvent("updated", {detail: this.currState}));
   }
 }
