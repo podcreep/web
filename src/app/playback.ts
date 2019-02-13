@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+
 import { PlaybackService, PlaybackState } from '../services/playback';
+import { formatTime } from '../services/utils';
 
 class BufferedSegment {
   start: number;
@@ -14,6 +15,8 @@ class BufferedSegment {
 })
 export class PlaybackComponent {
   playbackState: PlaybackState;
+
+  formatTime = formatTime;
 
   constructor(
     private readonly playbackService: PlaybackService) {
@@ -57,25 +60,6 @@ export class PlaybackComponent {
 
   skip(seconds) {
     this.playbackService.skip(seconds);
-  }
-
-  formatTime(seconds): string {
-    if (!seconds) {
-      return "--:--";
-    }
-
-    const min = Math.floor(seconds / 60);
-    const sec = Math.round(seconds - (min * 60));
-    let str = "";
-    if (min < 10) {
-      str += "0";
-    }
-    str += min + ":";
-    if (sec < 10) {
-      str += "0";
-    }
-    str += sec;
-    return str;
   }
 
   private refresh(playbackState: PlaybackState) {

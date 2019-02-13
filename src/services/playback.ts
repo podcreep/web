@@ -50,6 +50,13 @@ export class PlaybackService {
     this.audio.pause();
     this.audio.src = ep.mediaUrl;
     this.audio.load();
+
+    // If we're already part-way through playing this episode, start from where we left off.
+    const position = p.subscription.positions[ep.id];
+    if (position > 0) {
+      this.audio.currentTime = position;
+    }
+
     this.play();
   }
 

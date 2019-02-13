@@ -12,7 +12,7 @@ export interface Podcast {
   description: string;
   imageUrl: string;
   episodes: Episode[];
-  subscriptionID: number;
+  subscription: Subscription;
 }
 
 export interface PodcastList {
@@ -28,6 +28,10 @@ export interface Episode {
 }
 
 export interface Subscription {
+  id: number;
+  oldestUnlistenedEpisodeID: number;
+  positions: Map<number, number>;
+  podcastID: number;
   podcast: Podcast;
 }
 
