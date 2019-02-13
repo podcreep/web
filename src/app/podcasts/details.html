@@ -4,8 +4,8 @@
     <img src="{{podcast.imageUrl}}" width="48" height="48">
     <h1>{{podcast.title}}</h1>
     <div class="spacer"></div>
-    <button *ngIf="podcast.subscriptionID === 0" mat-raised-button color="primary" (click)="subscribe()">Subscribe</button>
-    <button *ngIf="podcast.subscriptionID !== 0" mat-raised-button (click)="unsubscribe()">Unsubscribe</button>
+    <button *ngIf="podcast.subscription == null" mat-raised-button color="primary" (click)="subscribe()">Subscribe</button>
+    <button *ngIf="podcast.subscription != null" mat-raised-button (click)="unsubscribe()">Unsubscribe</button>
     <button mat-raised-button (click)="refresh()">Refresh</button>
   </mat-toolbar>
   <p>{{podcast.description}}</p>

@@ -59,6 +59,10 @@ export class DetailsComponent {
   }
 
   isInProgress(podcast: Podcast, ep: Episode): boolean {
+    if (podcast.subscription == null) {
+      // If you're not subscribed, it's definitely not in progress.
+      return false;
+    }
     return (podcast.subscription.positions[ep.id] > 0);
   }
 
