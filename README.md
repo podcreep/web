@@ -2,6 +2,14 @@
 
 Main AngularTS website for podcreep.
 
+## Setup
+
+To get the project set up, after checking out the project, run:
+
+    npm up
+
+To make sure all the dependencies are updated.
+
 ## Development server
 
 You first need to be running the backend on localhost:8080 (see https://github.com/podcreep/server
