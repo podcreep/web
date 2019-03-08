@@ -7,6 +7,7 @@ Main AngularTS website for podcreep.
 To get the project set up, after checking out the project, run:
 
     npm up
+    npm install -g @angular/cli
 
 To make sure all the dependencies are updated.
 
