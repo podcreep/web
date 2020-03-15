@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { AsyncValidatorFn, FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
+import { AsyncValidatorFn, FormBuilder, FormControl, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
