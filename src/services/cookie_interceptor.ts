@@ -12,7 +12,10 @@ export class CookieInterceptor implements HttpInterceptor {
   private handleError(resp: HttpErrorResponse): Observable<any> {
     if (resp.status == 401) {
       // If we get a 401 status, it likely means our logic credentials are not valid any more.
-      // Redirect to the login URL.
+      // Make sure to clear out the cookie we have stored (if any)
+      window.localStorage["cookie"] = "";
+
+      // And redirect to the login page.
       this.router.navigate(["login"]);
       return of(resp.message);
     }
@@ -21,10 +24,10 @@ export class CookieInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (window.localStorage['cookie']) {
+    if (window.localStorage["cookie"]) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${window.localStorage['cookie']}`
+          Authorization: `Bearer ${window.localStorage["cookie"]}`
         }
       });
     }
