@@ -32,7 +32,7 @@ export class LoginComponent {
     this.accountService.login(
       this.loginForm.controls['username'].value,
       this.loginForm.controls['password'].value).subscribe(
-        data => { this.router.navigate(['podcasts']); },
+        data => { this.router.navigate(['subscriptions']); },
         err => { /* todo: show the error */ console.log(err); }
       );
   }
