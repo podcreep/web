@@ -23,6 +23,8 @@ export interface Episode {
   id: number;
   title: string;
   description: string;
+  descriptionHtml: boolean;
+  shortDescription: string;
   mediaUrl: string;
   pubDate: string;
 }

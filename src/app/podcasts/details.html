@@ -14,8 +14,8 @@
       <div mat-list-icon class="date">
         <div>{{formatDate(ep.pubDate)}}<br/></div>
       </div>
-      <h4 mat-line>{{ep.title}}</h4>
-      <p mat-line>{{ep.description}}</p>
+      <h4 mat-line (click)="showEpisodeDetails(ep)" class="ep-title">{{ep.title}}</h4>
+      <p mat-line>{{ep.shortDescription}}</p>
       <div *ngIf="isInProgress(podcast, ep)">{{ formatTime(podcast.subscription.positions[ep.id]) }}</div>
       <button mat-icon-button (click)="play(ep)">
         <mat-icon>play_circle_filled</mat-icon>

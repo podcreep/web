@@ -30,3 +30,7 @@ p {
 .mat-list-icon.date div {
   text-align: center;
 }
+
+h4.ep-title {
+  cursor: pointer;
+}

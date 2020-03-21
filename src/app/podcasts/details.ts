@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Location } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+
+import { EpisodeDetailsComponent } from './episode_details';
 
 import { PodcastsService, Podcast, Episode } from '../../services/podcasts';
 import { PlaybackService } from '../../services/playback';
@@ -21,6 +24,7 @@ export class DetailsComponent {
     private readonly podcastsService: PodcastsService,
     private readonly playbackService: PlaybackService,
     public readonly location: Location,
+    private readonly dialog: MatDialog,
     private readonly route: ActivatedRoute) {
   }
 
@@ -56,6 +60,20 @@ export class DetailsComponent {
 
   play(ep: Episode) {
     this.playbackService.start(this.podcast, ep);
+  }
+
+  showEpisodeDetails(ep: Episode) {
+    const dialogRef = this.dialog.open(
+      EpisodeDetailsComponent,
+      {
+        data: {
+          podcast: this.podcast,
+          episode: ep,
+        }
+      });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   isInProgress(podcast: Podcast, ep: Episode): boolean {
