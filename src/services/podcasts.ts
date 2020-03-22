@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/delay';
 
+import { PlaybackStateJson } from './playback';
+
 import { ENV } from '../environments/environment';
 
 export interface Podcast {
@@ -89,5 +91,24 @@ export class PodcastsService {
   subscriptions(): Observable<SubscriptionList> {
     const url = ENV.BACKEND + "api/subscriptions"
     return this.httpClient.get<SubscriptionList>(url, {});
+  }
+
+  /** Mark the given podcast/episode as done. */
+  markEpisodeDone(podcastID: number, episodeID: number) {
+    const json = new PlaybackStateJson(podcastID, episodeID, -1);
+    const url = `${ENV.BACKEND}api/podcasts/${podcastID}/episodes/${episodeID}/playback-state`;
+    this.httpClient.put<Subscription>(url, json).subscribe();
+
+    // TODO: if this is the currently-playing song, stop playing.
+  }
+
+  /** Mark the given episode and all older episodes as done. */
+  markEpisodeAfterDone(podcastID: number, episodeID: number) {
+    const json = new PlaybackStateJson(podcastID, episodeID, -1, true);
+    const url = `${ENV.BACKEND}api/podcasts/${podcastID}/episodes/${episodeID}/playback-state`;
+    this.httpClient.put<Subscription>(url, json).subscribe();
+
+    // TODO: if this is the currently-playing song, or the currently playing song is before this
+    // one, stop playing.
   }
 }

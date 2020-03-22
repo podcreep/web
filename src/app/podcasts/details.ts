@@ -46,6 +46,12 @@ export class DetailsComponent {
     });
   }
 
+  reload() {
+    this.podcastsService.get(this.podcast.id, false).subscribe(p => {
+      this.podcast = p;
+    });
+  }
+
   subscribe() {
     this.podcastsService.subscribe(this.podcast.id).subscribe(subscription => {
       this.podcast = subscription.podcast;
@@ -72,7 +78,10 @@ export class DetailsComponent {
         }
       });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if (result) {
+        // We need to refresh the list, probably marked an epsiode as done.
+        this.reload();
+      }
     });
   }
 

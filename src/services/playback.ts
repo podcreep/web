@@ -15,6 +15,16 @@ export class PlaybackState {
   currTime?: number;
 }
 
+// Simplified PlaybackState that we send via JSON to the server.
+export class PlaybackStateJson {
+  constructor(
+    readonly podcastID: number,
+    readonly episodeID: number,
+    readonly position: number,
+    readonly updateDoneCutoffDate: boolean = false) {
+  }
+}
+
 // The number of seconds between updates to the server.
 const SERVER_UPDATE_FREQ_SECONDS = 30;
 
@@ -104,7 +114,6 @@ export class PlaybackService {
       this.updateServerState();
     }
 
-    console.log("this.audio.currentTime = " + this.audio.currentTime);
     this.currState.buffered = this.audio.buffered;
     if (this.audio.readyState >= 1) {
       this.currState.duration = this.audio.duration;
@@ -121,14 +130,6 @@ export class PlaybackService {
    */
   private updateServerState() {
     this.timeToNextServerUpdate = SERVER_UPDATE_FREQ_SECONDS;
-
-    class PlaybackStateJson {
-      constructor(
-        readonly podcastID: number,
-        readonly episodeID: number,
-        readonly position: number) {
-      }
-    }
 
     const json = new PlaybackStateJson(
       this.currState.podcast.id,

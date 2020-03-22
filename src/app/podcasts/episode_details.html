@@ -3,7 +3,10 @@
   <h2>{{episode.title}}</h2>
   <p [innerHTML]=htmlDescription></p>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Close</button>
+<mat-dialog-actions>
+  <button mat-raised-button (click)=markDone() title="Mark this episode as done."><mat-icon>done</mat-icon> Mark done</button>
+  <button mat-raised-button (click)=markAllDone() title="Mark this and all older episodes as done."><mat-icon>done_all</mat-icon> Mark all before this done</button>
+  <span class="flex-spacer"></span>
+  <button mat-raised-button color="primary" mat-dialog-close>Close</button>
 </mat-dialog-actions>
 
