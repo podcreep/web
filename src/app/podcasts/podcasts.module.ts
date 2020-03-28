@@ -5,7 +5,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule, } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { MatToolbarModule, } from '@angular/material/toolbar';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 
 import { DetailsComponent } from './details';
@@ -29,6 +30,7 @@ import { ServicesModule } from '../../services/services.module';
     MatDialogModule,
     MatIconModule,
     MatListModule,
+    MatTabsModule,
     MatToolbarModule,
     RouterModule,
     ServicesModule,

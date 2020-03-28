@@ -29,6 +29,9 @@ export interface Episode {
   shortDescription: string;
   mediaUrl: string;
   pubDate: string;
+
+  podcastID: number?;
+  position: number?;
 }
 
 export interface Subscription {
@@ -41,6 +44,8 @@ export interface Subscription {
 
 export interface SubscriptionList {
   subscriptions: Subscription[];
+  newEpisodes: Episode[];
+  inProgress: Episode[];
 }
 
 @Injectable()
