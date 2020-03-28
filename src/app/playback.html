@@ -11,6 +11,9 @@
     <p>{{playbackState.episode.title}}</p>
   </div>
   <div class="spacer"></div>
+  <button mat-icon-button click="markDone()">
+    <mat-icon>check_circle_outline</mat-icon>
+  </button>
   <div>
     {{formatTime(playbackState.currTime)}}
     /

@@ -30,8 +30,8 @@ export interface Episode {
   mediaUrl: string;
   pubDate: string;
 
-  podcastID: number?;
-  position: number?;
+  podcastID?: number;
+  position?: number;
 }
 
 export interface Subscription {

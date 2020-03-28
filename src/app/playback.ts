@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+import { PodcastsService } from '../services/podcasts';
 import { PlaybackService, PlaybackState } from '../services/playback';
 import { formatTime } from '../services/utils';
 
@@ -19,6 +20,7 @@ export class PlaybackComponent {
   formatTime = formatTime;
 
   constructor(
+    private readonly podcastsService: PodcastsService,
     private readonly playbackService: PlaybackService) {
     this.refresh(this.playbackService.getState());
     this.playbackService.state.addEventListener("updated", (e: CustomEvent) => {
@@ -60,6 +62,11 @@ export class PlaybackComponent {
 
   skip(seconds) {
     this.playbackService.skip(seconds);
+  }
+
+  markDone() {
+    this.podcastsService.markEpisodeDone(
+        this.playbackState.podcast.id, this.playbackState.episode.id);
   }
 
   private refresh(playbackState: PlaybackState) {
