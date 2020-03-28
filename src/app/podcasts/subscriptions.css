@@ -3,6 +3,13 @@
   margin: 10px auto;
 }
 
+/*
+ * This seems to be a bug in the tab body? It ends up getting a scrollbar even though it shouldn't.
+ */
+mat-tab-group ::ng-deep .mat-tab-body-content {
+  overflow: hidden;
+}
+
 .mat-list-item {
   display: relative;
 }
@@ -12,7 +19,6 @@
   height: 48px;
   border-radius: 0;
 }
-
 
 .mat-list-item .mat-list-icon.date {
   display: flex;

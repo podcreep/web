@@ -16,7 +16,20 @@
       </mat-list>
     </mat-tab>
     <mat-tab label="In progress">
-      In progress
+      <mat-list>
+        <mat-list-item *ngFor="let ep of inProgress" mat-ripple>
+          <img mat-list-icon class="podcast-icon" src="{{ep.podcast.imageUrl}}" width="48">
+          <div mat-list-icon class="date">
+            <div>{{formatDate(ep.episode.pubDate)}}<br/></div>
+          </div>
+          <h4 mat-line class="ep-title" (click)="showEpisodeDetails(ep.podcast, ep.episode)">{{ep.episode.title}}</h4>
+          <p mat-line>{{ep.episode.shortDescription}}</p>
+          <div>{{ formatTime(ep.episode.position) }}</div>
+          <button mat-icon-button (click)="play(ep.podcast, ep.episode)">
+            <mat-icon>play_circle_filled</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
     </mat-tab>
     <mat-tab label="Podcasts">
       <mat-nav-list>
