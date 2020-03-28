@@ -9,7 +9,7 @@ To get the project set up, after checking out the project, run:
     npm up
     npm install -g @angular/cli
 
-To make sure all the dependencies are updated.
+To make sure all the dependencies are updated. You made need to run the second command with `sudo`.
 
 ## Development server
 
@@ -38,9 +38,10 @@ Will list everything that's out dated.
 This will install npu which is a tool that just updates the package.json file with the latest
 version of everything automatically
 
+    $ npu
     $ npm update
 
-Assuming you've updated package.json, this'll update everything. Just run with `ng server` as usual
+Assuming you've updated package.json, this'll update everything. Just run with `ng serve` as usual
 and spend then next two hour debugging all the breakages :/
 
 ## Problems?
