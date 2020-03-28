@@ -65,6 +65,7 @@ export class PlaybackComponent {
   }
 
   markDone() {
+    console.log("markDone()");
     this.podcastsService.markEpisodeDone(
         this.playbackState.podcast.id, this.playbackState.episode.id);
   }

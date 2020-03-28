@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/delay';
 
-import { PlaybackStateJson } from './playback';
+import { PlaybackStateJson, PlaybackService } from './playback';
 
 import { ENV } from '../environments/environment';
 
@@ -50,7 +50,9 @@ export interface SubscriptionList {
 
 @Injectable()
 export class PodcastsService {
-  constructor(private readonly httpClient: HttpClient) {
+  constructor(
+    private readonly httpClient: HttpClient,
+    private readonly playbackService: PlaybackService) {
   }
 
   /**
@@ -104,7 +106,13 @@ export class PodcastsService {
     const url = `${ENV.BACKEND}api/podcasts/${podcastID}/episodes/${episodeID}/playback-state`;
     this.httpClient.put<Subscription>(url, json).subscribe();
 
-    // TODO: if this is the currently-playing song, stop playing.
+    // If this is the currently-playing song, stop playing.
+    const playbackState = this.playbackService.getState();
+    if (playbackState.isPlaying &&
+        playbackState.podcast.id == podcastID &&
+        playbackState.episode.id == episodeID) {
+      this.playbackService.stop();
+    }
   }
 
   /** Mark the given episode and all older episodes as done. */

@@ -95,6 +95,18 @@ export class PlaybackService {
     this.updateServerState();
   }
 
+  // Stop playing. Very similar to pause, except we want the playback sheet to go away too.
+  stop() {
+    if (!this.currState.isPlaying) {
+      return;
+    }
+
+    this.audio.pause();
+
+    this.currState = {isPlaying: false};
+    this.dispatchState();
+  }
+
   skip(seconds) {
     if (this.audio.paused) {
       return;
