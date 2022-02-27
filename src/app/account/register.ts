@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AsyncValidatorFn, FormBuilder, FormControl, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { AccountService, UsernameStatus } from '../../services/account';
 
@@ -29,18 +29,20 @@ export class RegisterComponent {
   userNameValidator(): AsyncValidatorFn {
     return (ctrl: AbstractControl): Observable<ValidationErrors | null> => {
       return this.accountService.getUsernameStatus(ctrl.value)
-          .map(status => {
-            switch(status) {
-              case UsernameStatus.AVAILABE:
-                return null;
-              case UsernameStatus.UNAVAILABLE:
-                return { username: "unavailable" };
-              case UsernameStatus.INVALID:
-                return { username: "invalid" };
-              default:
-                return { username: "unknown" };
-            }
-          });
+          .pipe(
+            map(status => {
+              switch(status) {
+                case UsernameStatus.AVAILABE:
+                  return null;
+                case UsernameStatus.UNAVAILABLE:
+                  return { username: "unavailable" };
+                case UsernameStatus.INVALID:
+                  return { username: "invalid" };
+                default:
+                  return { username: "unknown" };
+              }
+            })
+          );
     }
   }
 

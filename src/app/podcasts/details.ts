@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 import { EpisodeDetailsComponent } from './episode_details';
 
@@ -29,7 +30,8 @@ export class DetailsComponent {
   }
 
   ngOnInit() {
-    this.route.params.map(p => p.id)
+    this.route.params
+      .pipe(map(p => p.id))
       .subscribe(sid => {
         const id = parseInt(sid, 10);
         if (id != NaN) {

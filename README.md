@@ -38,7 +38,7 @@ Will list everything that's out dated.
 This will install npu which is a tool that just updates the package.json file with the latest
 version of everything automatically
 
-    $ npu
+    $ ncu -u
     $ npm update
 
 Assuming you've updated package.json, this'll update everything. Just run with `ng serve` as usual

@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of'
-import 'rxjs/add/operator/delay';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ENV } from '../environments/environment';
 
@@ -42,17 +40,19 @@ export class AccountService {
       .get(ENV.BACKEND + 'api/accounts', {
         params: { username: username },
       })
-      .map(resp => {
-        // Any 200 response means the username was in the database already.
-        return UsernameStatus.UNAVAILABLE;
-      })
-      .pipe(catchError((err: HttpErrorResponse) => {
-        if (err.status == 404) {
-          return of(UsernameStatus.AVAILABE);
-        } else {
-          return of(UsernameStatus.INVALID);
-        }
-      }));
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          if (err.status == 404) {
+            return of(UsernameStatus.AVAILABE);
+          } else {
+            return of(UsernameStatus.INVALID);
+          }
+        }),
+        map(resp => {
+          // Any 200 response means the username was in the database already.
+          return UsernameStatus.UNAVAILABLE;
+        })
+      );
   }
 
   /**
@@ -69,10 +69,12 @@ export class AccountService {
         username: username,
         password: password
       })
-      .map(resp => {
-        this.saveCookie(username, resp.cookie);
-        return resp.cookie;
-      });
+      .pipe(
+        map(resp => {
+          this.saveCookie(username, resp.cookie);
+          return resp.cookie;
+        })
+      );
   }
 
   login(username: string, password: string): Observable<string> {
@@ -81,10 +83,12 @@ export class AccountService {
         username: username,
         password: password
       })
-      .map(resp => {
-        this.saveCookie(username, resp.cookie);
-        return resp.cookie;
-      });
+      .pipe(
+        map(resp => {
+          this.saveCookie(username, resp.cookie);
+          return resp.cookie;
+        })
+      );
   }
 
   logout() {

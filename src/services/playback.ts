@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/delay';
-import { Episode, Podcast, Subscription } from './podcasts';
+import { HttpClient } from '@angular/common/http';
 
+import { Episode, Podcast, Subscription } from './podcasts';
 import { ENV } from '../environments/environment';
 
 export class PlaybackState {
