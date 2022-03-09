@@ -41,16 +41,16 @@ export class AccountService {
         params: { username: username },
       })
       .pipe(
+        map(resp => {
+          // Any 200 response means the username was in the database already.
+          return UsernameStatus.UNAVAILABLE;
+        }),
         catchError((err: HttpErrorResponse) => {
           if (err.status == 404) {
             return of(UsernameStatus.AVAILABE);
           } else {
             return of(UsernameStatus.INVALID);
           }
-        }),
-        map(resp => {
-          // Any 200 response means the username was in the database already.
-          return UsernameStatus.UNAVAILABLE;
         })
       );
   }
