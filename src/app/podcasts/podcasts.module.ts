@@ -14,6 +14,7 @@ import { DiscoverComponent } from './discover';
 import { EpisodeDetailsComponent } from './episode_details';
 import { SubscriptionsComponent } from './subscriptions';
 
+import { PipesModule } from '../../pipes/pipes.module';
 import { ServicesModule } from '../../services/services.module';
 
 @NgModule({
@@ -32,6 +33,7 @@ import { ServicesModule } from '../../services/services.module';
     MatListModule,
     MatTabsModule,
     MatToolbarModule,
+    PipesModule,
     RouterModule,
     ServicesModule,
   ],

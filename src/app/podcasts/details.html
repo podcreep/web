@@ -1,7 +1,7 @@
 <div class="content" *ngIf="podcast != null">
   <mat-toolbar>
     <button mat-icon-button (click)="location.back()"><mat-icon>arrow_back</mat-icon></button>
-    <img src="{{podcast.imageUrl}}" width="48" height="48">
+    <img src="{{podcast | podcastImageUrl:48}}" width="48" height="48">
     <h1>{{podcast.title}}</h1>
     <div class="spacer"></div>
     <button *ngIf="!podcast.isSubscribed" mat-raised-button color="primary" (click)="subscribe()">Subscribe</button>
