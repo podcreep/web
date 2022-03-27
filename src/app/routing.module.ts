@@ -10,6 +10,7 @@ import { RegisterComponent } from './account/register';
 import { SubscriptionsComponent } from './podcasts/subscriptions';
 import { DiscoverComponent } from './podcasts/discover';
 import { DetailsComponent } from './podcasts/details';
+import { PrivacyPolicyComponent } from './privacy_policy';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
   { path: 'discover', component: DiscoverComponent },
   { path: 'subscriptions', component: SubscriptionsComponent },
   { path: 'podcasts/:id', component: DetailsComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: '', component: LandingComponent },
 //  { path: '**', component: PageNotFoundComponent }
 ];
