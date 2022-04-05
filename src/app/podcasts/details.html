@@ -16,7 +16,7 @@
       </div>
       <h4 mat-line (click)="showEpisodeDetails(ep)" class="ep-title">{{ep.title}}</h4>
       <p mat-line>{{ep.shortDescription}}</p>
-      <div *ngIf="isInProgress(podcast, ep)">{{ formatTime(podcast.subscription.positions[ep.id]) }}</div>
+      <div *ngIf="isInProgress(podcast, ep)">{{ formatTime(ep.position) }}</div>
       <button mat-icon-button (click)="play(ep)">
         <mat-icon>play_circle_filled</mat-icon>
       </button>

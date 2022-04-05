@@ -61,7 +61,7 @@ export class DetailsComponent {
   }
 
   unsubscribe() {
-    this.podcastsService.unsubscribe(this.podcast.id, this.podcast.subscription.id).subscribe(podcast => {
+    this.podcastsService.unsubscribe(this.podcast.id).subscribe(podcast => {
       this.podcast = podcast;
     });
   }
@@ -88,15 +88,15 @@ export class DetailsComponent {
   }
 
   isInProgress(podcast: Podcast, ep: Episode): boolean {
-    if (podcast.subscription == null) {
+    if (!podcast.isSubscribed) {
       // If you're not subscribed, it's definitely not in progress.
       return false;
     }
-    return (podcast.subscription.positions[ep.id] > 0);
+    return (ep.position > 0);
   }
 
   getProgress(podcast: Podcast, ep: Episode): string {
-    const position = podcast.subscription.positions[ep.id];
+    const position = ep.position;
     if (position <= 0) {
       return "--:--";
     }

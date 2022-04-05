@@ -12,7 +12,7 @@ export interface Podcast {
   description: string;
   imageUrl: string;
   episodes: Episode[];
-  subscription: Subscription;
+  isSubscribed: boolean;
 }
 
 export interface PodcastList {
@@ -30,6 +30,7 @@ export interface Episode {
 
   podcastID?: number;
   position?: number;
+  isComplete?: boolean;
 }
 
 export interface Subscription {
@@ -88,8 +89,8 @@ export class PodcastsService {
    *
    * @param id The ID of the podcast you want to subscribe to.
    */
-  unsubscribe(podcastID: number, subscriptionID: number): Observable<Podcast> {
-    const url = ENV.BACKEND + "api/podcasts/" + podcastID + "/subscriptions/" + subscriptionID
+  unsubscribe(podcastID: number): Observable<Podcast> {
+    const url = ENV.BACKEND + "api/podcasts/" + podcastID
     return this.httpClient.delete<Podcast>(url, {});
   }
 

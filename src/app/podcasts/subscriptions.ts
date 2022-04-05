@@ -35,7 +35,6 @@ export class SubscriptionsComponent {
       this.subscriptions = subscriptionList.subscriptions;
       const podcasts = new Map<Number, Podcast>();
       for (const s of this.subscriptions) {
-        s.podcast.subscription = s;
         podcasts[s.podcast.id] = s.podcast;
       }
       this.newEpisodes = [];

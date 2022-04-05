@@ -60,7 +60,7 @@ export class PlaybackService {
     this.audio.load();
 
     // If we're already part-way through playing this episode, start from where we left off.
-    const position = p.subscription.positions[ep.id];
+    const position = ep.position;
     if (position > 0) {
       this.audio.currentTime = position;
     }
