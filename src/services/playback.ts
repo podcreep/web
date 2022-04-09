@@ -19,7 +19,7 @@ export class PlaybackStateJson {
     readonly podcastID: number,
     readonly episodeID: number,
     readonly position: number,
-    readonly updateDoneCutoffDate: boolean = false) {
+    readonly lastUpdated: Date) {
   }
 }
 
@@ -144,7 +144,8 @@ export class PlaybackService {
     const json = new PlaybackStateJson(
       this.currState.podcast.id,
       this.currState.episode.id,
-      Math.round(this.currState.currTime));
+      Math.round(this.currState.currTime),
+      new Date());
     const url = ENV.BACKEND + "api/podcasts/" + this.currState.podcast.id + "/episodes/" +
         this.currState.episode.id + "/playback-state";
     this.httpClient.put<Subscription>(url, json).subscribe();

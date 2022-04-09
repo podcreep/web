@@ -75,6 +75,14 @@ export class PodcastsService {
   }
 
   /**
+   * Gets the most recently-played episode. We can use this to resume playing on page load.
+   */
+  getMostRecentlyPlayed(): Observable<Episode> {
+    let url = ENV.BACKEND + "api/last-played"
+    return this.httpClient.get<Episode>(url, {});
+  }
+
+  /**
    * Subscribe to the given podcast.
    *
    * @param id The ID of the podcast you want to subscribe to.
@@ -101,7 +109,7 @@ export class PodcastsService {
 
   /** Mark the given podcast/episode as done. */
   markEpisodeDone(podcastID: number, episodeID: number) {
-    const json = new PlaybackStateJson(podcastID, episodeID, -1);
+    const json = new PlaybackStateJson(podcastID, episodeID, -1, new Date());
     const url = `${ENV.BACKEND}api/podcasts/${podcastID}/episodes/${episodeID}/playback-state`;
     this.httpClient.put<Subscription>(url, json).subscribe();
 
@@ -116,7 +124,8 @@ export class PodcastsService {
 
   /** Mark the given episode and all older episodes as done. */
   markEpisodeAfterDone(podcastID: number, episodeID: number) {
-    const json = new PlaybackStateJson(podcastID, episodeID, -1, true);
+    // TODO:
+    const json = new PlaybackStateJson(podcastID, episodeID, -1, new Date());
     const url = `${ENV.BACKEND}api/podcasts/${podcastID}/episodes/${episodeID}/playback-state`;
     this.httpClient.put<Subscription>(url, json).subscribe();
 
