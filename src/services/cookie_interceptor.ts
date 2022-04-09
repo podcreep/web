@@ -11,7 +11,7 @@ export class CookieInterceptor implements HttpInterceptor {
 
   private handleError(resp: HttpErrorResponse): Observable<any> {
     if (resp.status == 401) {
-      // If we get a 401 status, it likely means our logic credentials are not valid any more.
+      // If we get a 401 status, it likely means our local credentials are not valid any more.
       // Make sure to clear out the cookie we have stored (if any)
       window.localStorage["cookie"] = "";
 
