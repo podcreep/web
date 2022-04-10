@@ -33,6 +33,11 @@ export interface Episode {
   isComplete?: boolean;
 }
 
+export interface PodcastWithEpisode {
+  podcast: Podcast,
+  episode: Episode,
+}
+
 export interface Subscription {
   id: number;
   oldestUnlistenedEpisodeID: number;
@@ -77,9 +82,9 @@ export class PodcastsService {
   /**
    * Gets the most recently-played episode. We can use this to resume playing on page load.
    */
-  getMostRecentlyPlayed(): Observable<Episode> {
+  getMostRecentlyPlayed(): Observable<PodcastWithEpisode> {
     let url = ENV.BACKEND + "api/last-played"
-    return this.httpClient.get<Episode>(url, {});
+    return this.httpClient.get<PodcastWithEpisode>(url, {});
   }
 
   /**

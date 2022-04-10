@@ -52,7 +52,7 @@ export class PlaybackService {
     return this.currState;
   }
 
-  start(p: Podcast, ep: Episode) {
+  start(p: Podcast, ep: Episode, play = true) {
     this.currState = {isPlaying: false, podcast: p, episode: ep};
 
     this.audio.pause();
@@ -65,7 +65,9 @@ export class PlaybackService {
       this.audio.currentTime = position;
     }
 
-    this.play();
+    if (play) {
+      this.play();
+    }
   }
 
   play() {
