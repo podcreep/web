@@ -13,6 +13,7 @@ import { PlaybackComponent } from './playback';
 import { PodcastsService } from '../services/podcasts';
 import { AccountService } from '../services/account';
 import { PlaybackService } from '../services/playback';
+import { PipesModule } from '../pipes/pipes.module';
 
 import { RoutingModule } from './routing.module';
 
@@ -46,6 +47,7 @@ function init(podcastsService: PodcastsService, playbackService: PlaybackService
     MatCheckboxModule,
     MatIconModule,
     MatToolbarModule,
+    PipesModule,
     RoutingModule,
   ],
   providers: [{
