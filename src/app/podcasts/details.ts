@@ -34,7 +34,7 @@ export class DetailsComponent {
       .pipe(map(p => p.id))
       .subscribe(sid => {
         const id = parseInt(sid, 10);
-        if (id != NaN) {
+        if (!Number.isNaN(id)) {
           this.podcastsService.get(id).subscribe(p => {
             this.podcast = p;
           });
