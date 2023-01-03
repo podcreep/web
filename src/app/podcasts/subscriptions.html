@@ -3,8 +3,8 @@
     <mat-tab label="New episodes">
       <mat-list>
         <mat-list-item *ngFor="let ep of newEpisodes" mat-ripple>
-          <img mat-list-icon class="podcast-icon" src="{{ep.podcast | podcastImageUrl:48}}" width="48">
-          <div mat-list-icon class="date">
+          <img matListItemIcon class="podcast-icon" src="{{ep.podcast | podcastImageUrl:48}}" width="48">
+          <div matListItemIcon class="date">
             <div>{{formatDate(ep.episode.pubDate)}}<br/></div>
           </div>
           <h4 mat-line class="ep-title" (click)="showEpisodeDetails(ep.podcast, ep.episode)">{{ep.episode.title}}</h4>
@@ -18,12 +18,12 @@
     <mat-tab label="In progress">
       <mat-list>
         <mat-list-item *ngFor="let ep of inProgress" mat-ripple>
-          <img mat-list-icon class="podcast-icon" src="{{ep.podcast | podcastImageUrl:48}}" width="48">
-          <div mat-list-icon class="date">
+          <img matListItemIcon class="podcast-icon" src="{{ep.podcast | podcastImageUrl:48}}" width="48">
+          <div matListItemIcon class="date">
             <div>{{formatDate(ep.episode.pubDate)}}<br/></div>
           </div>
-          <h4 mat-line class="ep-title" (click)="showEpisodeDetails(ep.podcast, ep.episode)">{{ep.episode.title}}</h4>
-          <p mat-line>{{ep.episode.shortDescription}}</p>
+          <h4 matListItemLine class="ep-title" (click)="showEpisodeDetails(ep.podcast, ep.episode)">{{ep.episode.title}}</h4>
+          <p matListItemLine>{{ep.episode.shortDescription}}</p>
           <div>{{ formatTime(ep.episode.position) }}</div>
           <button mat-icon-button (click)="play(ep.podcast, ep.episode)">
             <mat-icon>play_circle_filled</mat-icon>
@@ -34,9 +34,9 @@
     <mat-tab label="Podcasts">
       <mat-nav-list>
         <mat-list-item *ngFor="let sub of subscriptions" mat-ripple [routerLink]="['/podcasts', sub.podcast.id]">
-          <img mat-list-icon class="podcast-icon" src="{{sub.podcast | podcastImageUrl:48}}" width="48">
-          <h4 mat-line>{{sub.podcast.title}}</h4>
-          <p mat-line>{{sub.podcast.description}}</p>
+          <img matListItemIcon class="podcast-icon" src="{{sub.podcast | podcastImageUrl:48}}" width="48">
+          <h4 matListItemLine>{{sub.podcast.title}}</h4>
+          <p matListItemLine>{{sub.podcast.description}}</p>
         </mat-list-item>
       </mat-nav-list>
     </mat-tab>
