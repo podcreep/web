@@ -12,6 +12,14 @@ mat-toolbar button {
   margin-left: 10pt;
 }
 
+.action-button {
+  margin-top: 12px;
+}
+
+mat-icon {
+  vertical-align: top;
+}
+
 p {
   font-family: roboto, "Helvetica Neue", sans-serif;
 }
@@ -20,14 +28,10 @@ p {
   flex-grow: 1;
 }
 
-.mat-list .mat-list-item .mat-list-icon.date {
-  display: flex;
+.date {
   font-size: 14px;
-  height: 72px;
-  flex-direction: row;
-  align-items: center;
 }
-.mat-list-icon.date div {
+.date div {
   text-align: center;
 }
 

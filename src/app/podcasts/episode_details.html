@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>{{podcast.title}}</h2>
 <mat-dialog-content class="mat-typography">
   <h2>{{episode.title}}</h2>
-  <p [innerHTML]=htmlDescription></p>
+  <p [innerHTML]="htmlDescription | safeHtml"></p>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-raised-button (click)=markDone() title="Mark this episode as done."><mat-icon>done</mat-icon> Mark done</button>

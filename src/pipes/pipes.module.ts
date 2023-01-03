@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 
 import { PodcastImageUrlPipe } from './podcast_image_url';
+import { SafeHtmlPipe } from './safe_html';
 
 @NgModule({
   imports: [],
   declarations: [
-    PodcastImageUrlPipe
+    PodcastImageUrlPipe,
+    SafeHtmlPipe
   ],
   exports: [
-    PodcastImageUrlPipe
+    PodcastImageUrlPipe,
+    SafeHtmlPipe
   ]
 })
 export class PipesModule {

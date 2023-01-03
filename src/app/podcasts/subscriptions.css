@@ -10,24 +10,32 @@ mat-tab-group ::ng-deep .mat-tab-body-content {
   overflow: hidden;
 }
 
+mat-icon {
+  vertical-align: top;
+}
+
 .mat-list-item {
   display: relative;
 }
 
-.mat-list-item .mat-list-icon.podcast-icon {
+.podcast-icon {
   width: 48px;
   height: 48px;
   border-radius: 0;
 }
-
-.mat-list-item .mat-list-icon.date {
-  display: flex;
-  font-size: 14px;
-  height: 72px;
-  flex-direction: row;
-  align-items: center;
+img.podcast-icon {
+  width: 48px;
+  height: 48px;
 }
-.mat-list-icon.date div {
+
+button.action-button.mdc-icon-button.mat-mdc-icon-button {
+  margin-top: 12px;
+}
+
+.date {
+  font-size: 14px;
+}
+.date div {
   text-align: center;
 }
 

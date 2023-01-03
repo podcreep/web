@@ -8,16 +8,16 @@
     <button *ngIf="podcast.isSubscribed" mat-raised-button (click)="unsubscribe()">Unsubscribe</button>
     <button mat-raised-button (click)="refresh()">Refresh</button>
   </mat-toolbar>
-  <p>{{podcast.description}}</p>
+  <p [innerHTML]="podcast.description | safeHtml"></p>
   <mat-list>
     <mat-list-item *ngFor="let ep of podcast.episodes">
-      <div mat-list-icon class="date">
+      <div matListItemIcon class="date">
         <div>{{formatDate(ep.pubDate)}}<br/></div>
       </div>
-      <h4 mat-line (click)="showEpisodeDetails(ep)" class="ep-title">{{ep.title}}</h4>
-      <p mat-line>{{ep.shortDescription}}</p>
+      <h4 matListItemTitle (click)="showEpisodeDetails(ep)" class="ep-title">{{ep.title}}</h4>
+      <p matListItemLine>{{ep.shortDescription}}</p>
       <div *ngIf="isInProgress(podcast, ep)">{{ formatTime(ep.position) }}</div>
-      <button mat-icon-button (click)="play(ep)">
+      <button matListItemMeta mat-icon-button class="action-button" (click)="play(ep)">
         <mat-icon>play_circle_filled</mat-icon>
       </button>
     </mat-list-item>

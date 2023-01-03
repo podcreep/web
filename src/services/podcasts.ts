@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, catchError, EMPTY } from 'rxjs';
 
 import { PlaybackStateJson, PlaybackService } from './playback';
 
@@ -84,7 +84,12 @@ export class PodcastsService {
    */
   getMostRecentlyPlayed(): Observable<PodcastWithEpisode> {
     let url = ENV.BACKEND + "api/last-played"
-    return this.httpClient.get<PodcastWithEpisode>(url, {});
+    return this.httpClient
+      .get<PodcastWithEpisode>(url, {})
+      .pipe(catchError((err: HttpErrorResponse) => {
+        // If we get any error, we'll just return an empty observable.
+        return EMPTY
+      }));
   }
 
   /**
