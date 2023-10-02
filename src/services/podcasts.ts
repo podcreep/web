@@ -63,7 +63,11 @@ export class PodcastsService {
    * Searches for podcasts using the given query parameters. TODO: support query parameters.
    */
   search(): Observable<PodcastList> {
-    return this.httpClient.get<PodcastList>(ENV.BACKEND + 'api/podcasts');
+    return this.httpClient.get<PodcastList>(ENV.BACKEND + "api/podcasts");
+  }
+
+  trending(): Observable<PodcastList> {
+    return this.httpClient.get<PodcastList>(ENV.BACKEND + "api/discover/trending");
   }
 
   /**

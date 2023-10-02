@@ -14,7 +14,7 @@ export class DiscoverComponent {
   }
 
   ngOnInit() {
-    this.podcastsService.search().subscribe(podcastList => {
+    this.podcastsService.trending().subscribe(podcastList => {
       this.podcasts = podcastList.podcasts;
     });
   }
