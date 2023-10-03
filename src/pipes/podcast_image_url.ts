@@ -18,6 +18,10 @@ export class PodcastImageUrlPipe implements PipeTransform {
   }
 
   transform(podcast: Podcast, size?: any): any {
+    if (podcast.isImageExternal) {
+      return podcast.imageUrl;
+    }
+
     var url = this._joinUrl(ENV.BACKEND, podcast.imageUrl);
     if (size != null) {
       url += `?width=${size}&height=${size}`;

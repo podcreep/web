@@ -4,10 +4,6 @@
   margin: 10px auto;
 }
 
-.mat-list-item {
-  display: relative;
-}
-
 .podcast-entry .podcast-icon {
   border-radius: 0;
 }
