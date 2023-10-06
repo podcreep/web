@@ -4,26 +4,24 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 
-import { EpisodeDetailsComponent } from './episode_details';
-
-import { PodcastsService } from '../../services/podcasts';
 import { PlaybackService } from '../../services/playback';
 import { formatTime } from '../../services/utils';
 import { Podcast, Episode } from '../../services/model';
+import { DiscoveryService } from '../../services/discovery';
 
 @Component({
-  selector: 'podcast-details',
+  selector: 'discover-details',
   templateUrl: './details.html',
   styleUrls: ['./details.css']
 })
-export class DetailsComponent {
+export class DiscoverDetailsComponent {
   @Input() id: number;
-  podcast: Podcast;
+  podcast?: Podcast = null;
 
   formatTime = formatTime;
 
   constructor(
-    private readonly podcastsService: PodcastsService,
+    private readonly discoveryService: DiscoveryService,
     private readonly playbackService: PlaybackService,
     public readonly location: Location,
     private readonly dialog: MatDialog,
@@ -36,7 +34,7 @@ export class DetailsComponent {
       .subscribe(sid => {
         const id = parseInt(sid, 10);
         if (!Number.isNaN(id)) {
-          this.podcastsService.get(id).subscribe(p => {
+          this.discoveryService.get(id).subscribe(p => {
             this.podcast = p;
           });
         }
@@ -44,34 +42,34 @@ export class DetailsComponent {
   }
 
   refresh() {
-    this.podcastsService.get(this.podcast.id, true).subscribe(p => {
+    this.discoveryService.get(this.podcast.id, true).subscribe(p => {
       this.podcast = p;
     });
   }
 
   reload() {
-    this.podcastsService.get(this.podcast.id, false).subscribe(p => {
-      this.podcast = p;
-    });
+    //this.podcastsService.get(this.podcast.id, false).subscribe(p => {
+    //  this.podcast = p;
+   // });
   }
 
   subscribe() {
-    this.podcastsService.subscribe(this.podcast.id).subscribe(subscription => {
-      this.podcast = subscription.podcast;
-    });
+   // this.podcastsService.subscribe(this.podcast.id).subscribe(subscription => {
+    //  this.podcast = subscription.podcast;
+   // });
   }
 
   unsubscribe() {
-    this.podcastsService.unsubscribe(this.podcast.id).subscribe(podcast => {
-      this.podcast = podcast;
-    });
+   // this.podcastsService.unsubscribe(this.podcast.id).subscribe(podcast => {
+   //   this.podcast = podcast;
+   // });
   }
 
   play(ep: Episode) {
     this.playbackService.start(this.podcast, ep);
   }
 
-  showEpisodeDetails(ep: Episode) {
+  showEpisodeDetails(ep: Episode) {/*
     const dialogRef = this.dialog.open(
       EpisodeDetailsComponent,
       {
@@ -85,7 +83,7 @@ export class DetailsComponent {
         // We need to refresh the list, probably marked an epsiode as done.
         this.reload();
       }
-    });
+    });*/
   }
 
   isInProgress(podcast: Podcast, ep: Episode): boolean {

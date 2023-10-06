@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
-import { PodcastsService, Podcast } from '../../services/podcasts';
+import { Podcast } from '../../services/model';
+import { DiscoveryService } from '../../services/discovery';
 
 @Component({
   selector: 'discover',
@@ -10,11 +11,11 @@ import { PodcastsService, Podcast } from '../../services/podcasts';
 export class DiscoverComponent {
   podcasts: Podcast[];
 
-  constructor(private readonly podcastsService: PodcastsService) {
+  constructor(private readonly discoveryService: DiscoveryService) {
   }
 
   ngOnInit() {
-    this.podcastsService.trending().subscribe(podcastList => {
+    this.discoveryService.trending().subscribe(podcastList => {
       this.podcasts = podcastList.podcasts;
     });
   }

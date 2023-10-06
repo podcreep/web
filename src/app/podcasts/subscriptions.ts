@@ -3,9 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { EpisodeDetailsComponent } from './episode_details';
 
-import { Episode, Podcast, PodcastsService, Subscription } from '../../services/podcasts';
+import { PodcastsService } from '../../services/podcasts';
 import { PlaybackService } from '../../services/playback';
 import { formatTime } from '../../services/utils';
+import { Episode, Podcast, Subscription } from '../../services/model';
 
 class EpisodeDetails {
   episode: Episode

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Episode, Podcast, Subscription } from './podcasts';
+import { Episode, Podcast, Subscription } from './model';
 import { ENV } from '../environments/environment';
 
 export class PlaybackState {

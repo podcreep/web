@@ -14,7 +14,6 @@ export class LandingComponent {
     private readonly router: Router) {
   }
 
-
   ngOnInit() {
     if (this.accountService.isLoggedIn()) {
       this.router.navigate(['subscriptions']); 

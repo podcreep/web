@@ -9,18 +9,16 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 
-import { DetailsComponent } from './details';
-import { EpisodeDetailsComponent } from './episode_details';
-import { SubscriptionsComponent } from './subscriptions';
+import { DiscoverComponent } from './discover';
+import { DiscoverDetailsComponent } from './details';
 
 import { PipesModule } from '../../pipes/pipes.module';
 import { ServicesModule } from '../../services/services.module';
 
 @NgModule({
   declarations: [
-    DetailsComponent,
-    EpisodeDetailsComponent,
-    SubscriptionsComponent,
+    DiscoverComponent,
+    DiscoverDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -37,4 +35,4 @@ import { ServicesModule } from '../../services/services.module';
   ],
   providers: []
 })
-export class PodcastsModule { }
+export class DiscoverModule { }

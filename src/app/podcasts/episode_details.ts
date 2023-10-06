@@ -1,7 +1,8 @@
 import { Component, Inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Podcast, Episode, PodcastsService } from '../../services/podcasts';
+import { PodcastsService } from '../../services/podcasts';
+import { Episode, Podcast } from "../../services/model";
 
 export interface EpisodeDetailsData {
   podcast: Podcast

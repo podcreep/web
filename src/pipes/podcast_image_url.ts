@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 import { ENV } from '../environments/environment';
-import { Podcast } from '../services/podcasts';
+import { Podcast } from '../services/model';
 
 @Pipe({
   name: 'podcastImageUrl'

@@ -1,0 +1,40 @@
+
+.content {
+  width: 800px;
+  margin: 10px auto;
+}
+
+h1 {
+  margin-left: 10px;
+}
+
+mat-toolbar button {
+  margin-left: 10pt;
+}
+
+.action-button {
+  margin-top: 12px;
+}
+
+mat-icon {
+  vertical-align: top;
+}
+
+p {
+  font-family: roboto, "Helvetica Neue", sans-serif;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.date {
+  font-size: 14px;
+}
+.date div {
+  text-align: center;
+}
+
+h4.ep-title {
+  cursor: pointer;
+}
