@@ -1,7 +1,16 @@
-<mat-nav-list class="content">
-  <mat-list-item *ngFor="let podcast of podcasts" mat-ripple class="podcast-entry" [routerLink]="['/discover', podcast.id]">
-    <img matListItemAvatar class="podcast-icon" src="{{podcast | podcastImageUrl:48}}" width="48">
-    <h4 matListItemTitle>{{podcast.title}}</h4>
-    <p matListItemLine>{{podcast.description}}</p>
-  </mat-list-item>
-</mat-nav-list>
+<section class="content">
+  <form class="search-form" #f="ngForm" (ngSubmit)="onSearch()">
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input matInput name="searchQuery" [(ngModel)]="searchQuery" placeholder="Title, description, etc" value="">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </form>
+  <mat-nav-list>
+    <mat-list-item *ngFor="let podcast of podcasts" mat-ripple class="podcast-entry" [routerLink]="['/discover', podcast.id]">
+      <img matListItemAvatar class="podcast-icon" src="{{podcast | podcastImageUrl:48}}" width="48">
+      <h4 matListItemTitle>{{podcast.title}}</h4>
+      <p matListItemLine>{{podcast.description}}</p>
+    </mat-list-item>
+  </mat-nav-list>
+</section>

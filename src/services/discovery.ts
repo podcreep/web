@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { firstValueFrom, Observable } from 'rxjs';
 
 import { ENV } from '../environments/environment';
 import { Podcast, PodcastList } from './model';
@@ -11,8 +11,14 @@ export class DiscoveryService {
     private readonly httpClient: HttpClient) {
   }
 
-  trending(): Observable<PodcastList> {
-    return this.httpClient.get<PodcastList>(ENV.BACKEND + "api/discover/trending");
+  trending(): Promise<PodcastList> {
+    return firstValueFrom(this.httpClient.get<PodcastList>(ENV.BACKEND + "api/discover/trending"));
+  }
+
+  search(query: string): Promise<PodcastList> {
+    return firstValueFrom(this.httpClient.get<PodcastList>(ENV.BACKEND + "api/discover/search", {
+      params: new HttpParams().set("q", query),
+    }))
   }
 
   /**
@@ -21,11 +27,11 @@ export class DiscoveryService {
    * @param id The ID of the podcast you're interested in. The ID in this case is the one from discovery, we don't
    *           expect this ID to mean anything outside of discovery.
    */
-  get(id: number, refresh?: boolean): Observable<Podcast> {
+  get(id: number, refresh?: boolean): Promise<Podcast> {
     let url = ENV.BACKEND + "api/discover/podcast/" + id;
     if (refresh) {
       url += "?refresh=1";
     }
-    return this.httpClient.get<Podcast>(url);
+    return firstValueFrom(this.httpClient.get<Podcast>(url));
   }
 }

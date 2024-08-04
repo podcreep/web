@@ -34,7 +34,7 @@ export class DiscoverDetailsComponent {
       .subscribe(sid => {
         const id = parseInt(sid, 10);
         if (!Number.isNaN(id)) {
-          this.discoveryService.get(id).subscribe(p => {
+          this.discoveryService.get(id).then(p => {
             this.podcast = p;
           });
         }
@@ -42,7 +42,7 @@ export class DiscoverDetailsComponent {
   }
 
   refresh() {
-    this.discoveryService.get(this.podcast.id, true).subscribe(p => {
+    this.discoveryService.get(this.podcast.id, true).then(p => {
       this.podcast = p;
     });
   }

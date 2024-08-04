@@ -7,3 +7,7 @@
 .podcast-entry .podcast-icon {
   border-radius: 0;
 }
+
+.search-form mat-form-field {
+  width: 100%;
+}
