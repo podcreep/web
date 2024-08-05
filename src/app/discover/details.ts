@@ -8,6 +8,7 @@ import { PlaybackService } from '../../services/playback';
 import { formatTime } from '../../services/utils';
 import { Podcast, Episode } from '../../services/model';
 import { DiscoveryService } from '../../services/discovery';
+import { PodcastsService } from '../../services/podcasts';
 
 @Component({
   selector: 'discover-details',
@@ -22,6 +23,7 @@ export class DiscoverDetailsComponent {
 
   constructor(
     private readonly discoveryService: DiscoveryService,
+    private readonly podcastsService: PodcastsService,
     private readonly playbackService: PlaybackService,
     public readonly location: Location,
     private readonly dialog: MatDialog,
@@ -41,22 +43,10 @@ export class DiscoverDetailsComponent {
       });
   }
 
-  refresh() {
-    this.discoveryService.get(this.podcast.id, true).then(p => {
-      this.podcast = p;
-    });
-  }
-
-  reload() {
-    //this.podcastsService.get(this.podcast.id, false).subscribe(p => {
-    //  this.podcast = p;
-   // });
-  }
-
   subscribe() {
-   // this.podcastsService.subscribe(this.podcast.id).subscribe(subscription => {
-    //  this.podcast = subscription.podcast;
-   // });
+    this.podcastsService.subscribeDiscovered(this.podcast.discoverId).then(subscription => {
+      this.podcast = subscription.podcast;
+    });
   }
 
   unsubscribe() {

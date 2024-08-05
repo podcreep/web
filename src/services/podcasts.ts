@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, EMPTY } from 'rxjs';
+import { Observable, catchError, EMPTY, firstValueFrom } from 'rxjs';
 
 import { PlaybackStateJson, PlaybackService } from './playback';
 
@@ -55,6 +55,20 @@ export class PodcastsService {
   subscribe(id: number): Observable<Subscription> {
     const url = ENV.BACKEND + "api/podcasts/" + id + "/subscriptions"
     return this.httpClient.post<Subscription>(url, {});
+  }
+
+  /**
+   * Subscribe to a podcast that we got back from discoveryService. These will have different IDs to podcasts that we
+   * track. If we don't already have this podcast tracked, we'll start tracking it and the new ID will be returned in
+   * the subscription.
+   * 
+   * @param discoverId 
+   */
+  subscribeDiscovered(discoverId: string): Promise<Subscription> {
+    const url = ENV.BACKEND + "api/podcasts/subscribeDiscovered"
+    return firstValueFrom(this.httpClient.post<Subscription>(url, {
+      discoveryId: discoverId,
+    }))
   }
 
   /**

@@ -6,7 +6,6 @@
     <div class="spacer"></div>
     <button *ngIf="!podcast.isSubscribed" mat-raised-button color="primary" (click)="subscribe()">Subscribe</button>
     <button *ngIf="podcast.isSubscribed" mat-raised-button (click)="unsubscribe()">Unsubscribe</button>
-    <button mat-raised-button (click)="refresh()">Refresh</button>
   </mat-toolbar>
   <p [innerHTML]="podcast.description | safeHtml"></p>
   <mat-list>

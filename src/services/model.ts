@@ -1,6 +1,7 @@
 
 export interface Podcast {
   id: number;
+  discoverId: string;
   title: string;
   description: string;
   imageUrl: string;
