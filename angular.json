@@ -15,7 +15,7 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "assets": [
               "src/assets",
               "src/favicon.ico"
@@ -58,24 +58,24 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "web:build"
+            "buildTarget": "web:build"
           },
           "configurations": {
             "prod": {
-              "browserTarget": "web:build:prod"
+              "buildTarget": "web:build:prod"
             },
             "production": {
-              "browserTarget": "web:build:production"
+              "buildTarget": "web:build:production"
             },
             "dev": {
-              "browserTarget": "web:build:dev"
+              "buildTarget": "web:build:dev"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "web:build"
+            "buildTarget": "web:build"
           }
         },
         "lint": {
