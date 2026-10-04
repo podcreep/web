@@ -27,8 +27,9 @@ function init(podcastsService: PodcastsService, playbackService: PlaybackService
   return () => {
     return podcastsService.getMostRecentlyPlayed().pipe(
       map((podcastWithEpisode) => {
-        playbackService.start(
-          podcastWithEpisode.podcast, podcastWithEpisode.episode, /*play=*/false)
+        // TODO: Don't auto-play the most recently played episode, just load it and show the UI.
+//        playbackService.start(
+//          podcastWithEpisode.podcast, podcastWithEpisode.episode, /*play=*/false)
       })
     )
   }

@@ -15,10 +15,12 @@
       </div>
       <h4 matListItemTitle (click)="showEpisodeDetails(ep)" class="ep-title">{{ep.title}}</h4>
       <p matListItemLine>{{ep.shortDescription}}</p>
-      <div *ngIf="isInProgress(podcast, ep)">{{ formatTime(ep.position) }}</div>
-      <button matListItemMeta mat-icon-button class="action-button" (click)="play(ep)">
-        <mat-icon>play_circle_filled</mat-icon>
-      </button>
+      <div matListItemMeta class="episode-actions">
+        <span *ngIf="isInProgress(podcast, ep)" class="episode-progress">D {{ formatTime(ep.position) }}</span>
+        <button mat-icon-button class="action-button" (click)="play(ep)">
+          <mat-icon>play_circle_filled</mat-icon>
+        </button>
+      </div>
     </mat-list-item>
   </mat-list>
 </div>

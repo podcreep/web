@@ -9,9 +9,12 @@
           </div>
           <h4 matListItemTitle class="ep-title" (click)="showEpisodeDetails(ep.podcast, ep.episode)">{{ep.episode.title}}</h4>
           <p matListItemLine>{{ep.episode.shortDescription}}</p>
-          <button matListItemMeta mat-icon-button class="action-button" (click)="play(ep.podcast, ep.episode)">
-            <mat-icon>play_circle_filled</mat-icon>
-          </button>
+          <div matListItemMeta class="episode-actions">
+            <span *ngIf="ep.episode.duration > 0">{{ formatTime(ep.episode.duration) }}</span>
+            <button mat-icon-button class="action-button" (click)="play(ep.podcast, ep.episode)">
+              <mat-icon>play_circle_filled</mat-icon>
+            </button>
+          </div>
         </mat-list-item>
       </mat-list>
     </mat-tab>
@@ -24,10 +27,13 @@
           </div>
           <h4 matListItemTitle class="ep-title" (click)="showEpisodeDetails(ep.podcast, ep.episode)">{{ep.episode.title}}</h4>
           <p matListItemLine>{{ep.episode.shortDescription}}</p>
-          <div>{{ formatTime(ep.episode.position) }}</div>
-          <button matListItemMeta mat-icon-button class="action-button" (click)="play(ep.podcast, ep.episode)">
-            <mat-icon>play_circle_filled</mat-icon>
-          </button>
+          <div matListItemMeta class="episode-actions">
+            <span>{{ formatTime(ep.episode.position) }}</span>
+            <span *ngIf="ep.episode.duration > 0"> / {{ formatTime(ep.episode.duration) }}</span>
+            <button mat-icon-button class="action-button" (click)="play(ep.podcast, ep.episode)">
+              <mat-icon>play_circle_filled</mat-icon>
+            </button>
+          </div>
         </mat-list-item>
       </mat-list>
     </mat-tab>

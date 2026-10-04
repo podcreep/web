@@ -13,7 +13,7 @@ mat-toolbar button {
 }
 
 .action-button {
-  margin-top: 12px;
+  margin: 0;
 }
 
 mat-icon {
@@ -33,6 +33,16 @@ p {
 }
 .date div {
   text-align: center;
+}
+
+.episode-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.episode-progress {
+  white-space: nowrap;
 }
 
 h4.ep-title {

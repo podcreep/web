@@ -16,10 +16,16 @@
       </div>
       <h4 matListItemTitle (click)="showEpisodeDetails(ep)" class="ep-title">{{ep.title}}</h4>
       <p matListItemLine>{{ep.shortDescription}}</p>
-      <div *ngIf="isInProgress(podcast, ep)">{{ formatTime(ep.position) }}</div>
-      <button matListItemMeta mat-icon-button class="action-button" (click)="play(ep)">
-        <mat-icon>play_circle_filled</mat-icon>
-      </button>
+      <div matListItemMeta class="episode-actions">
+        <span *ngIf="isInProgress(podcast, ep)" class="episode-progress">{{ formatTime(ep.position) }}</span>
+        <span *ngIf="ep.duration > 0" class="episode-duration">
+          <ng-container *ngIf="isInProgress(podcast, ep)"> / </ng-container>
+          {{ formatTime(ep.duration) }}
+        </span>
+        <button mat-icon-button class="action-button" (click)="play(ep)">
+          <mat-icon>play_circle_filled</mat-icon>
+        </button>
+      </div>
     </mat-list-item>
   </mat-list>
 </div>

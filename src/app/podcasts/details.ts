@@ -93,11 +93,12 @@ export class DetailsComponent {
       // If you're not subscribed, it's definitely not in progress.
       return false;
     }
-    return (ep.position > 0);
+
+    return !!ep.position;
   }
 
   getProgress(podcast: Podcast, ep: Episode): string {
-    const position = ep.position;
+    const position = ep.position || 0;
     if (position <= 0) {
       return "--:--";
     }
